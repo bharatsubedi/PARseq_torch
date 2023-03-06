@@ -1,0 +1,65 @@
+model:
+  img_size:
+  - 32
+  - 128
+  max_label_length: 25
+  charset_train: ''
+  charset_test: ''
+  batch_size: 256
+  weight_decay: 0.0
+  warmup_pct: 0.01 #0.075
+  name: parseq
+  _target_: strhub.models.parseq.system.PARSeq
+  patch_size:
+  - 4
+  - 8
+  embed_dim: 384
+  enc_num_heads: 6
+  enc_mlp_ratio: 4
+  enc_depth: 12
+  dec_num_heads: 12
+  dec_mlp_ratio: 4
+  dec_depth: 1
+  lr: 0.0007
+  perm_num: 6 # for vision use 1 for language model use 6
+  perm_forward: true
+  perm_mirrored: true #false for vision use False for language model use true
+  dropout: 0.1
+  decode_ar: true
+  refine_iters: 1 
+data:
+  root_dir: ''
+  train_dir: /home/jovyan/local/2_public_data/TwinReader/str_data/Japanese/train
+  batch_size: ${model.batch_size}
+  img_size: ${model.img_size}
+  charset_train: ${model.charset_train}
+  charset_test: ${model.charset_test}
+  max_label_length: ${model.max_label_length}
+  remove_whitespace: false
+  normalize_unicode: false
+  augment: true
+  consistency_regularization: false
+  num_workers: 4
+  val_dir: /home/jovyan/local/2_public_data/TwinReader/str_data/Japanese/train/English/evaluation
+  test_dir: /home/jovyan/local/2_public_data/TwinReader/str_data/Japanese/train/English/validation
+  limit_size: false
+  size_of_limit: 40000
+  exclude_folder: [ 'unlabeled',]
+  data_weights: [
+        ['English/training', 0.3],
+        ['English/synthetic', 0.7],
+    ] 
+trainer:
+  max_epochs: 30
+  num_iters: 500000
+  validate_iter: 3000
+
+data_loader:
+    character:
+        dict_dir: "./char_dicts"
+        dict_list:
+            - "charset"
+ckpt_path: null
+pretrained: null
+log_dir: './outputs/exp_logs_baseline_all/'
+resume: null

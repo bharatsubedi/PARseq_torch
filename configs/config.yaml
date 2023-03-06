@@ -29,7 +29,7 @@ model:
   refine_iters: 1 
 data:
   root_dir: ''
-  train_dir: /home/jovyan/local/2_public_data/TwinReader/str_data/Japanese/train
+  train_dir: English
   batch_size: ${model.batch_size}
   img_size: ${model.img_size}
   charset_train: ${model.charset_train}
@@ -40,14 +40,14 @@ data:
   augment: true
   consistency_regularization: false
   num_workers: 4
-  val_dir: /home/jovyan/local/2_public_data/TwinReader/str_data/Japanese/train/English/evaluation
-  test_dir: /home/jovyan/local/2_public_data/TwinReader/str_data/Japanese/train/English/validation
+  val_dir: English/evaluation
+  test_dir: English/validation
   limit_size: false
   size_of_limit: 40000
   exclude_folder: [ 'unlabeled',]
   data_weights: [
-        ['English/training', 0.3],
-        ['English/synthetic', 0.7],
+        ['real', 0.3],
+        ['synthetic', 0.7],
     ] 
 trainer:
   max_epochs: 30

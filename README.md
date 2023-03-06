@@ -6,8 +6,8 @@ Torch version of parseq module
 Check data stucture in DATA.md file 
 
 ## Train and test
-bash train.sh
-bash test.sh
+'bash train.sh'
+'bash test.sh'
 
 ## configuration
 Change the configuration and path to fit your model at config.yaml file

@@ -1,5 +1,5 @@
 # PARseq_torch
-Torch version of parseq module
+Torch version of parseq module of https://github.com/baudm/parseq
 - I have convert parseq module into torch version and torch version accuracy is higher than pytorch lighting version.
   - I also prepare for onnx and tensorrt conversion. 
   - please test using corresponding python file
